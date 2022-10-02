@@ -7,11 +7,10 @@ export default class World extends Scene {
 	constructor() {
 		super();
 
-		floor.rotation.x = Math.PI * -0.5;
-		this.add(floor);
-		this.floor = floor;
-
 		const factory = new Factory();
+		this.add(factory);
+		this.factory = factory;
+
 		const boxSize = 4;
 		const cubeMesh = factory.instantiate(PRIMITIVES.BOX);
 		cubeMesh.position.set(boxSize + 1, boxSize / 2, 0);
@@ -26,11 +25,12 @@ export default class World extends Scene {
 			chair.position.x = 1;
 		});
 
-		this.add(factory);
-		this.factory = factory;
-
 		const lighting = new StandardLighting();
 		this.add(lighting);
 		this.lighting = lighting;
+
+		floor.rotation.x = Math.PI * -0.5;
+		this.add(floor);
+		this.floor = floor;
 	}
 }
