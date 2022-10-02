@@ -19,6 +19,8 @@ export default class World extends Scene {
 		const radius = 3;
 		const sphereMesh = factory.instantiate(PRIMITIVES.SPHERE);
 		sphereMesh.position.set(-radius - 1, radius + 2, 0);
+
+		factory.loadAsset('SheenChair.glb', 'gltf');
 		this.add(factory);
 		this.factory = factory;
 
