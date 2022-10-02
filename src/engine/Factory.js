@@ -26,7 +26,7 @@ export class Factory extends Object3D {
 			const loader = new GLTFLoader();
 			loader.load(fileName, (gltf) => {
 				this.add(gltf.scene);
-				onLoaded(fileName, fileType, gltf.scene);
+				onLoaded(gltf.scene);
 			});
 		}
 	}

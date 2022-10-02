@@ -20,7 +20,7 @@ export default class World extends Scene {
 		const sphereMesh = factory.instantiate(PRIMITIVES.SPHERE);
 		sphereMesh.position.set(-radius - 1, radius + 2, 0);
 
-		factory.loadAsset('SheenChair.glb', 'gltf', (fileName, fileType, chair) => {
+		factory.loadAsset('SheenChair.glb', 'gltf', (chair) => {
 			chair.scale.set(6, 6, 6);
 			chair.position.z = -7;
 			chair.position.x = 1;
