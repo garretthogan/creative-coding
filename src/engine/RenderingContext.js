@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import FPSCharacter from './FPSCharacter';
 
 export default class RenderingContext {
 	constructor(canvasId) {
@@ -13,16 +14,16 @@ export default class RenderingContext {
 		const aspect = 2; // the canvas default
 		const near = 0.1;
 		const far = 1000;
-		const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-		camera.position.z = 20;
-		camera.position.y = 10;
+		const player = new FPSCharacter(fov, aspect, near, far);
+		player.position.z = 20;
+		player.position.y = 5;
 
-		const controls = new OrbitControls(camera, canvas);
-		controls.target.set(0, 5, 0);
-		controls.update();
+		// const controls = new OrbitControls(player, canvas);
+		// controls.target.set(0, 2, 0);
+		// controls.update();
 
 		this.renderer = renderer;
-		this.camera = camera;
+		this.player = player;
 	}
 
 	resizeRendererToDisplaySize() {
@@ -32,8 +33,8 @@ export default class RenderingContext {
 		const height = (canvas.clientHeight * pixelRatio) | 0;
 		const needResize = canvas.width !== width || canvas.height !== height;
 		if (needResize) {
-			this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
-			this.camera.updateProjectionMatrix();
+			this.player.aspect = canvas.clientWidth / canvas.clientHeight;
+			this.player.updateProjectionMatrix();
 			this.renderer.setSize(width, height, false);
 		}
 		return needResize;
@@ -41,6 +42,6 @@ export default class RenderingContext {
 
 	render(scene) {
 		this.resizeRendererToDisplaySize();
-		this.renderer.render(scene, this.camera);
+		this.renderer.render(scene, this.player);
 	}
 }
